@@ -19,13 +19,17 @@ reg [2:0] order_count;//to indicate how many orders are there in the system
 reg [5:0] imgs_rec; //indicating the number of samples received
 reg [5:0] imgs_sent; //indicating the number of samples sent
 wire finish_order;//to indicate a complete order was transferred
+
 //determining the unit functioning enable
 always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
         order_count<=0;
     end
     else begin
-        if(order_come) begin
+        if(order_come&&order_count>=5)begin
+            order_count<=5;
+        end
+        else if(order_come) begin
             order_count<=order_count+1;
         end
         if(finish_order)begin
