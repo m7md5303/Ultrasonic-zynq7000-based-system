@@ -1,5 +1,6 @@
 module Decoder #(
-    parameter DATA_WIDTH = 8  // Parameter for the width of received_data
+    parameter DATA_WIDTH = 14  // Parameter for the width of received_data
+    parameter AMOUNT_WIDTH = 8 // Parameter for the width of received_data
 )(
     input wire clk,                            // Clock signal
     input wire rst,                            // Reset signal (active high)
@@ -11,7 +12,7 @@ module Decoder #(
     output reg valid,
     output reg receive,
     output reg send,
-    output reg [DATA_WIDTH-1:0] amount // Parametrized amount for DAC
+    output reg [AMOUNT_WIDTH-1:0] amount // Parametrized amount for DAC
 );
 
 // Bits assignment within the received_data word
