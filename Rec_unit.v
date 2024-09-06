@@ -1,4 +1,4 @@
-module Rec_unit (rst_n,clk,rec_en,buf_in,order_come,send_enB,AXI_OUT,order_full,sending,no_order);
+module Rec_unit (rst_n,clk,rec_en,buf_in,order_come,send_enB,AXI_OUT,order_full,sending,no_order,ramadd);
 parameter FIFO_DATA = 25;
 parameter ORDER_IMGS = 50;
 //declaring ports
@@ -11,25 +11,23 @@ output [FIFO_DATA-1:0] AXI_OUT; //the output through the AXI port to the PS unit
 output order_full; //indicating the system is unable to receive more orders
 output sending; //a flag indicating there is data transfer occuring
 output no_order; // a flag indicating no orders to send to the PS
+output [6:0] ramadd;//for inserting data in the ramblock
 //declaring regs
 reg send_enB_tmp,sending_tmp;
 reg [FIFO_DATA-1:0] AXI_OUT_tmp;
+reg [6:0] ramadd_tmp;
 //declaring internal regs
 reg [2:0] order_count;//to indicate how many orders are there in the system
 reg [5:0] imgs_rec; //indicating the number of samples received
 reg [5:0] imgs_sent; //indicating the number of samples sent
 wire finish_order;//to indicate a complete order was transferred
-
 //determining the unit functioning enable
 always @(posedge clk or negedge rst_n) begin
     if(!rst_n) begin
         order_count<=0;
     end
     else begin
-        if(order_come&&order_count>=5)begin
-            order_count<=5;
-        end
-        else if(order_come) begin
+        if(order_come) begin
             order_count<=order_count+1;
         end
         if(finish_order)begin
@@ -62,6 +60,7 @@ always @(posedge clk or negedge rst_n) begin
         AXI_OUT_tmp<=0;
         imgs_sent<=0;
         sending_tmp<=0;
+        ramadd_tmp<=0;
     end
     else if(rec_en&&(order_count>0))begin
         //getting the amount of images sent and handling the finish order signal
@@ -75,6 +74,12 @@ always @(posedge clk or negedge rst_n) begin
         end
         //sending data through the AXI port
         AXI_OUT_tmp<=buf_in;
+        if(ramadd_tmp==99)begin
+            ramadd_tmp<=0;
+        end
+        else begin
+        ramadd_tmp<=ramadd_tmp+1;            
+        end
     end
 end
 
@@ -86,7 +91,6 @@ assign send_enB = send_enB_tmp;
 assign sending = sending_tmp;
 assign no_order = (!rst_n) ? 1 : (order_count==0) ? 1 : 0;
 assign AXI_OUT = AXI_OUT_tmp;
-
-
+assign ramadd=ramadd_tmp;
 
 endmodule //Rec_unit

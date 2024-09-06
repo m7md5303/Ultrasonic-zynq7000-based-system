@@ -20,7 +20,9 @@ module TB ();
       bit [24:0]AXI_Out,AXI_ex; // Signal to the AXI to receive data.
       bit no_order,no_order_ex; // Signal carry the number of order which sent by the CU.
       bit sending,sending_ex;   // Flag signal to indicate there is data transfer.
-
+      logic [6:0] read_add;
+      logic rd_en;
+      logic [24:0] read_data;
                          
                          /************Counter**************/
       int correct_counter = 0;
@@ -30,7 +32,11 @@ module TB ();
                          /************Taking Object from the Class************/
       CU control_unit_obj=new;
                          /***********Instantiate The CU Module ************/
-      ControlUnit CU_Dut (.clk(clk), .rst_n(reset), .send_enB(send_en), .ValidSignal(valid), .sending(sending), .sendEnable(send_mode), .rec_en(receive_mode), .increaseSignal(increase), .decreaseSignal(decrease), .onSignal(on), .offSignal(off), .AmountSignal(amount), .buf_in(data_transfer), .AXI_OUT(AXI_Out), .no_order(no_order), .outputDAC(DAC_out) );
+      ControlUnit CU_Dut (.clk(clk), .rst_n(reset), .send_enB(send_en), .ValidSignal(valid),
+       .sending(sending), .sendEnable(send_mode), .rec_en(receive_mode), .increaseSignal(increase),
+       .decreaseSignal(decrease), .onSignal(on), .offSignal(off), .AmountSignal(amount), 
+       .buf_in(data_transfer), .no_order(no_order), .outputDAC(DAC_out) 
+       ,.read_add(read_add),.rd_en(rd_en),.read_data(read_data));
 
 // Start generating the Clock.
 initial begin
