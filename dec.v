@@ -37,9 +37,6 @@ always @(posedge clk or negedge rst_n) begin
         send <= 0;
         amount <= 0;
     end else begin
-        // Update valid signal
-        valid <= received_data[6];
-
         // If valid = 0, do nothing (keep previous states)
         if (received_data[6]) begin
             // Ensure on and off are inverses; if both are high or both are low, no action
