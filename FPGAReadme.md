@@ -1,1 +1,0 @@
-#FPGA Sub-system Explanation
