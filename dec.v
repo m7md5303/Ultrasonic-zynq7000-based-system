@@ -23,7 +23,7 @@ module Decoder #(
 // Bit 4: Receive
 // Bit 5: Send
 // Bit 6: Valid
-// Bits [DATA_WIDTH-1:6]: Amount (remaining bits)
+// Bits [DATA_WIDTH-1:7]: Amount (remaining bits)
 
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
