@@ -1,6 +1,6 @@
 import decpack::*;
 module dectb ();
-parameter DATA_WIDTH=15;
+parameter DATA_WIDTH=32;
 parameter AMOUNT_WIDTH = 8;
     logic clk;                            // Clock signal
     logic rst_n;                            // Reset signal (active high)
