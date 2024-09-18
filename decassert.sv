@@ -1,5 +1,5 @@
 module decsva (clk,rst_n,received_data,on,off,increase,decrease,valid,send,receive,amount);
-parameter DATA_WIDTH = 15;
+parameter DATA_WIDTH = 32;
 parameter AMOUNT_WIDTH = 8;
 input clk,rst_n;
 input [DATA_WIDTH-1:0] received_data;
