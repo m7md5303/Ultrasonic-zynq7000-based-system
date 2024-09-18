@@ -1,5 +1,5 @@
 module Decoder #(
-    parameter DATA_WIDTH = 15,  // Parameter for the width of received_data
+    parameter DATA_WIDTH = 32,  // Parameter for the width of received_data
     parameter AMOUNT_WIDTH = 8 // Parameter for the width of received_data
 )(
     input wire clk,                            // Clock signal
