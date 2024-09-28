@@ -17,6 +17,7 @@ The FPGA block in this system is reponsible for bridging the gap between the PS 
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/SendingUnit.v">Sending Unit Design File</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/curam.v">The RAM connected to the CU output</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/controlUnit.v">Top Module</a></li>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/rectb.sv">Receive-block Control Unit Testbench</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/TB.sv">Control Unit Testbench</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/pack.sv">CU Testbench package</a></li>
 </ul>
