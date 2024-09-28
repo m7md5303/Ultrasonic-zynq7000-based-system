@@ -67,7 +67,7 @@ initial begin
             #2;
             check(no_order,no_order_ex);
             AXI_ex=25'h000000;
-            check_AXI(AXI_Out,AXI_ex);
+            check_AXI(CU_Dut.AXI_OUT,AXI_ex);
                 /* Pass the data to the covergroup */
                 Pass_to_cover;
         
@@ -81,7 +81,7 @@ initial begin
             receive_mode=1;
             data_transfer=25'h0ffffff;
             AXI_ex=0;
-            check_AXI(AXI_Out,AXI_ex);
+            check_AXI(CU_Dut.AXI_OUT,AXI_ex);
             
             #50;
                 /* Pass the data to the covergroup */
@@ -92,7 +92,7 @@ initial begin
             receive_mode=1;
             data_transfer=25'h0ffffff;
             AXI_ex=0;
-            check_AXI(AXI_Out,AXI_ex);
+            check_AXI(CU_Dut.AXI_OUT,AXI_ex);
             
             #50;
                 /* Pass the data to the covergroup */
@@ -126,7 +126,7 @@ initial begin
             #4;
             check(sending,sending_ex);
             AXI_ex=25'hfffffff;
-            check_AXI(AXI_Out,AXI_ex);
+            check_AXI(CU_Dut.AXI_OUT,AXI_ex);
             amount=8'h01;
             Do_ex=12'h010;
             #2;
@@ -151,7 +151,7 @@ initial begin
             sending_ex=1;
             check(sending,sending_ex);
             AXI_ex=25'hEEEEEEE;
-            check_AXI(AXI_Out,AXI_ex);
+            check_AXI(CU_Dut.AXI_OUT,AXI_ex);
             amount=8'h01;
             Do_ex=12'h000;
             check_DAC(DAC_out,Do_ex);

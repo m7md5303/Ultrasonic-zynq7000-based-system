@@ -23,7 +23,7 @@ SendingUnit send(.clk(clk),.rst_n(rst_n),.order_full(order_full),.sendEnable(sen
 Rec_unit receive(.rst_n(rst_n),.clk(clk),.rec_en(rec_en),
 .buf_in(buf_in),.order_come(order),
 .send_enB(send_enB),.AXI_OUT(AXI_OUT),.order_full(order_full),
-.sending(sending),.no_order(no_order),.ramadd(wr_add));
+.sending(sending),.no_order(no_order),.ramadd(wr_add),.valid(ValidSignal),.on(onSignal),.off(offSignal));
 //declaring the ram in which the transmitted data is stored temporarily
 curam ram(.clk(clk),.rst_n(rst_n),.wr_add(wr_add),.read_add(read_add),.wr_data(AXI_OUT),
 .read_data(read_data),.wr_en(sending),.rd_en(rd_en));

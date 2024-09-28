@@ -27,13 +27,15 @@ module SendingUnit (clk,rst_n,order_full,sendEnable,ValidSignal,AmountSignal,inc
                 order<=0;
               end
            end 
-          else if (offSignal) begin
-               // When offSignal is active, set DAC to zero
-             outputDAC <= 12'b0;
-           end
            else begin
              flag=1;
+             order<=0;
+             outputDAC<=0;
            end
+      end
+      else begin
+        order<=0;
+        outputDAC<=0;
       end
    end
 endmodule
