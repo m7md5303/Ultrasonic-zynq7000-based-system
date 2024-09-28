@@ -37,8 +37,9 @@ always @(posedge clk or negedge rst_n) begin
         send <= 0;
         amount <= 0;
     end else begin
+        // Update valid signal
+
         // If valid = 0, do nothing (keep previous states)
-        if (received_data[6]) begin
             // Ensure on and off are inverses; if both are high or both are low, no action
             if (received_data[0] && ~received_data[1]) begin
                 on <= 1;
@@ -49,12 +50,10 @@ always @(posedge clk or negedge rst_n) begin
               end else if(~received_data[0]&&~received_data[1])begin 
                 on<=0;
                 off<=0;
-                valid<=1;
             end
              else begin
                 on <= 0;
                 off <= 0;
-                valid<=0;
                 amount <= 0;
             end
 
@@ -68,24 +67,27 @@ always @(posedge clk or negedge rst_n) begin
             end else if(~received_data[2]&&~received_data[3])begin 
                 increase<=0;
                 decrease<=0;
-                valid<=1;
             end
                 else begin
                 increase <= 0;
                 decrease <= 0;
-                valid<=0;
                 amount <= 0;
             end
             //send & receive
             send<=received_data[5];
             receive<=received_data[4];
             // The amount field is taken from the remaining bits of received_data
-            amount <= received_data[DATA_WIDTH-1:7];
-
-            
+            amount <= received_data[14:7];
+            //valid
+            if((!(received_data[2]&&received_data[3]))&&(!(received_data[0]&&received_data[1]))&&received_data[6])begin
+                valid<=1;
+            end
+            else begin
+                valid<=0;
+            end
         end
     end
-end
+
 
 endmodule
 

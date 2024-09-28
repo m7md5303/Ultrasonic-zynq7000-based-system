@@ -1,5 +1,5 @@
 package decpack;
-parameter DATA_WIDTH = 32;
+parameter DATA_WIDTH = 15;
 class decclass;
 bit clk;
 rand logic rst_n;
