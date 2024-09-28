@@ -26,8 +26,10 @@ The FPGA block in this system is reponsible for bridging the gap between the PS 
 <h4>-Decoder</h4>
 <p>The decoder's role is to receive the control word from the PS and decoding it to the control unit.</p>
 <ul>
-  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/dec.v">Decoder Design</a></li>
-  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/FPGA/decassert.sv">Design Assertions file</a></li>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/dec.v">Decoder Design</a></li>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/dectb.sv">Decoder Testbench</a></li>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/decgold.sv">Decoder Golden model for Testbench</a></li>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/decassert.sv">Design Assertions file</a></li>
 </ul>
 <br></br>
 <br></br>
