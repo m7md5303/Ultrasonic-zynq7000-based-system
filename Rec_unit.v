@@ -1,8 +1,8 @@
-module Rec_unit (rst_n,clk,rec_en,buf_in,order_come,send_enB,AXI_OUT,order_full,sending,no_order,ramadd);
+module Rec_unit (rst_n,clk,rec_en,buf_in,order_come,send_enB,AXI_OUT,order_full,sending,no_order,ramadd,valid,on,off);
 parameter FIFO_DATA = 25;
 parameter ORDER_IMGS = 50;
 //declaring ports
-input  rst_n,clk;
+input  rst_n,clk,valid,on,off;
 input  rec_en; //the enable signal coming from the decoder
 input  [FIFO_DATA-1:0] buf_in; //the coming data from the buffer to be sent
 input order_come; //to be acknowledged that the user started a sending order
@@ -28,9 +28,22 @@ always @(posedge clk or negedge rst_n) begin
     end
     else begin
         if(order_come) begin
+            if(order_count==5)begin
+                if(finish_order)begin
+                    order_count<=4;
+                end
+                else begin
+                order_count<=5;
+                end
+            end
+            else if(finish_order)begin
+               order_count<=order_count; 
+            end
+            else begin
             order_count<=order_count+1;
+            end
         end
-        if(finish_order)begin
+        else if(finish_order)begin
             order_count<=order_count-1;
         end
     end
@@ -42,7 +55,7 @@ always @(posedge clk or negedge rst_n) begin
         AXI_OUT_tmp<=0;
         imgs_rec<=0;
     end
-    else if (rec_en&&(order_count>0)) begin
+    else if (rec_en&&on&&!off&&(order_count>0)&&valid) begin
             if(imgs_rec==ORDER_IMGS)begin
                 send_enB_tmp<=0;
                 imgs_rec<=0;
@@ -62,7 +75,7 @@ always @(posedge clk or negedge rst_n) begin
         sending_tmp<=0;
         ramadd_tmp<=0;
     end
-    else if(rec_en&&(order_count>0))begin
+    else if(rec_en&&on&&!off&&(order_count>0)&&valid)begin
         //getting the amount of images sent and handling the finish order signal
         if(imgs_sent==ORDER_IMGS)begin
             imgs_sent<=0;
