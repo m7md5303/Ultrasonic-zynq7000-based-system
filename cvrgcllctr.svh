@@ -13,9 +13,7 @@ reset_cp: coverpoint seq_item_cov.rst_n{
     bins zeros={0};
 	bins ones={1};
 }
-controlword_cp: coverpoint seq_item_cov.received_data{
-    bins all = default;
-}
+controlword_cp: coverpoint seq_item_cov.received_data;
 
 cross reset_cp , controlword_cp;
 increase_cp: coverpoint seq_item_cov.received_data[2];

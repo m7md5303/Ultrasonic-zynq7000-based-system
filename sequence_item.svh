@@ -1,7 +1,7 @@
 package sonar_sequence_item_pkg;
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-parameter DATA_WIDTH = 15;
+parameter DATA_WIDTH = 32;
 parameter FIFO_DATA = 25;
 class sonar_sequence_item extends uvm_sequence_item;
 `uvm_object_utils(sonar_sequence_item)                          

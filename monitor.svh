@@ -32,7 +32,6 @@ class sonar_monitor extends uvm_monitor;
          rsp_seq_item.outputDAC = sonar_vif_monitor.outputDAC;
          //
          rsp_seq_item.no_order_ref = gold_vif_monitor.no_order;
-         rsp_seq_item.read_data_ref = gold_vif_monitor.read_data;
          rsp_seq_item.outputDAC_ref = gold_vif_monitor.outputDAC;
          //
          mon_ap.write(rsp_seq_item);

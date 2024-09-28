@@ -3,7 +3,7 @@ import uvm_pkg::*;
 `include "uvm_macros.svh"
 import sonar_sequence_item_pkg::*;
 import sonar_config_pkg::*;
-parameter DATA_WIDTH = 15;
+parameter DATA_WIDTH = 32;
 class sonar_scoreboard extends uvm_scoreboard;
    `uvm_component_utils(sonar_scoreboard)
     uvm_analysis_export #(sonar_sequence_item) sb_export;
@@ -42,11 +42,18 @@ class sonar_scoreboard extends uvm_scoreboard;
     forever begin
       sb_fifo.get(seq_item_sb);
       if((seq_item_sb.no_order!=gold_vif_sb.no_order)||(seq_item_sb.outputDAC!=gold_vif_sb.outputDAC))begin
-         `uvm_error("runphase" , $sformatf("error at %0t",$time))
+      if((seq_item_sb.no_order!=gold_vif_sb.no_order))begin
+         `uvm_error("runphase" , $sformatf("error no order at %0t",$time))
          error_count++;
+      end
+      if((seq_item_sb.outputDAC!=gold_vif_sb.outputDAC))begin
+         `uvm_error("runphase" , $sformatf("error outputDAC at %0t",$time))
+         error_count++;
+      end
       end
       else begin
          correct_count++;
+         `uvm_info("run_phase", $sformatf("correct at %0t",$time), UVM_MEDIUM)
       end
     end
    endtask
