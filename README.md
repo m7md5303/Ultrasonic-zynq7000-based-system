@@ -12,6 +12,8 @@ The FPGA block in this system is reponsible for bridging the gap between the PS 
 <h4>Top module</h4>
 <h5>Verification Files</h5>
 <ul>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/Top VPlan.xlsx">Verification Plan</a></li>
+  <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/cvrgreport.txt">Coverage Report</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/TOP.v">Top module File</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/interface.sv">Top module Interface File</a></li>
   <li><a href="https://github.com/m7md5303/Ultrasonic-zynq7000-based-system/blob/main/top.svh">UVM Top module File</a></li>
