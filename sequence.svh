@@ -144,7 +144,7 @@ package sonar_sequence_pkg;
         endfunction
 
         task body();
-        repeat(100)begin
+        repeat(10500)begin
         seq_item = sonar_sequence_item::type_id::create("seq_item");
         start_item(seq_item);
         seq_item.rand_mode(1);

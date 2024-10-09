@@ -8,7 +8,6 @@ class sonar_scoreboard extends uvm_scoreboard;
    `uvm_component_utils(sonar_scoreboard)
     uvm_analysis_export #(sonar_sequence_item) sb_export;
     uvm_tlm_analysis_fifo #(sonar_sequence_item) sb_fifo;
-
     sonar_sequence_item seq_item_sb;
     virtual golden_inter_ref gold_vif_sb;
     logic no_order_ref;
@@ -62,7 +61,7 @@ class sonar_scoreboard extends uvm_scoreboard;
    function void report_phase(uvm_phase phase);
         super.report_phase(phase);
         `uvm_info("report_phase",$sformatf("Total successful transactions: %0d",correct_count),UVM_MEDIUM);
-        `uvm_info("report_phase",$sformatf("Total failed transactions: %0d",error_count),UVM_MEDIUM);
+        `uvm_info("report_phase",$sformatf("Total failed transactions: %0d ",error_count),UVM_MEDIUM);
     endfunction
 endclass
 endpackage

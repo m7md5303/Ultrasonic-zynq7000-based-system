@@ -23,6 +23,15 @@ always @(posedge clk or negedge rst_n) begin
         order_count<=0;
         img_count<=0;
         outputDAC<=0;
+        amount<=0;
+        order_came<=0;
+        on<=0;
+        off<=0;
+        increase<=0;
+        decrease<=0;
+        receive<=0;
+        send<=0;
+        valid<=0;
     end
     else begin
         on<=received_data[0];
@@ -45,6 +54,7 @@ always @(posedge clk or negedge rst_n) begin
         end
         else if(on&&!off&&valid&&!(increase||decrease)&&send&&order_count<5)begin
             outputDAC<=outputDAC;
+            order_came<=1;
         end
         else begin
             order_came<=0;

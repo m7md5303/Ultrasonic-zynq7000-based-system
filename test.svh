@@ -72,7 +72,7 @@ class sonar_test extends uvm_test;
     `uvm_info("run_phase","send_deasserted",UVM_LOW)  
     end
     //
-    repeat(150)begin
+    repeat(800)begin
     `uvm_info("run_phase","receive_asserted",UVM_LOW)
     recseq.start(env.agt.sequencer);
     `uvm_info("run_phase","receive_deasserted",UVM_LOW) 

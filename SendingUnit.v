@@ -14,17 +14,17 @@ module SendingUnit (clk,rst_n,order_full,sendEnable,ValidSignal,AmountSignal,inc
           if (onSignal && ~offSignal) begin
             // Control DAC only when onSignal is active and offSignal is not
                order<=1;
-              if (increaseSignal && ~decreaseSignal) begin
+              if (increaseSignal && ~decreaseSignal && onSignal && !offSignal) begin
                   // Increase DAC output by the value of AmountSignal*16
                   outputDAC <= outputDAC + AmountSignal*16;
               end
-              else if (decreaseSignal && ~increaseSignal) begin
+              else if (decreaseSignal && ~increaseSignal && onSignal && !offSignal) begin
                   // Decrease DAC output by the value of AmountSignal*16
                   outputDAC <= outputDAC - AmountSignal*16;
               end
-              else begin
-                flag=1;
-                order<=0;
+              else if (~decreaseSignal && ~increaseSignal && onSignal && !offSignal) begin
+                  // Decrease DAC output by the value of AmountSignal*16
+                  outputDAC <= outputDAC;
               end
            end 
            else begin
